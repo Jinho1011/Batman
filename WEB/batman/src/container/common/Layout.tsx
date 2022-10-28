@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-import HeaderCntr from "./Header.cntr";
+import HeaderContainer from "./HeaderContainer";
 
-const PageWrapper = styled.div`
+const LayoutContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -18,13 +18,13 @@ const ChildrenWrapper = styled.div`
   flex-flow: column wrap;
 `;
 
-const PageTemplateCntr = ({ children }: { children: any }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <PageWrapper>
-      <HeaderCntr />
+    <LayoutContainer>
+      <HeaderContainer />
       <ChildrenWrapper>{children}</ChildrenWrapper>
-    </PageWrapper>
+    </LayoutContainer>
   );
 };
 
-export default PageTemplateCntr;
+export default Layout;

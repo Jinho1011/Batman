@@ -1,20 +1,20 @@
 import { useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import PageTemplate from "../container/common/PageTemplate.cntr";
+import Layout from "../container/common/Layout";
 import Cam from "../container/home/Cam";
 import Runway from "../container/home/Runway";
 import LogList from "../container/home/Log";
 import User from "../component/home/User";
 import SideWrapper from "../component/home/SideWrapper";
 
-const HomePage = ({ history }: { history: any }) => {
+const HomePage = () => {
   const { isFull } = useSelector((state) => ({
     isFull: (state as any).fullscreen.isFull,
   }));
 
   return (
-    <PageTemplate>
+    <Layout>
       {isFull && (
         <>
           <Cam />
@@ -30,7 +30,7 @@ const HomePage = ({ history }: { history: any }) => {
           </SideWrapper>
         </>
       )}
-    </PageTemplate>
+    </Layout>
   );
 };
 
