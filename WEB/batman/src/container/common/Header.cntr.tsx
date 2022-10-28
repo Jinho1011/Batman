@@ -1,4 +1,3 @@
-
 import Header from "../../component/common/Header";
 
 const HeaderCntr = () => {

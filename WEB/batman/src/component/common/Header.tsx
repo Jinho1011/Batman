@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import StartModal from "../home/Header/StartModal";
-
 const HeaderWrapper = styled.div`
   width: 10%;
   height: 100%;

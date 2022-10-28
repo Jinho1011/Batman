@@ -18,7 +18,7 @@ const ChildrenWrapper = styled.div`
   flex-flow: column wrap;
 `;
 
-const PageTemplateCntr = ({ children }) => {
+const PageTemplateCntr = ({ children }: { children: any }) => {
   return (
     <PageWrapper>
       <HeaderCntr />
