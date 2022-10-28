@@ -1,7 +1,7 @@
 import Header from "../../component/common/Header";
 
-const HeaderCntr = () => {
+const HeaderContainer = () => {
   return <Header />;
 };
 
-export default HeaderCntr;
+export default HeaderContainer;
