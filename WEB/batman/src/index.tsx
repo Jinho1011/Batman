@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
@@ -12,6 +11,8 @@ import { Provider } from "react-redux";
 import rootReducer, { rootSaga } from "./module";
 import { composeWithDevTools } from "redux-devtools-extension"; // 리덕스 개발자 도구
 import createSagaMiddleware from "redux-saga";
+import theme from "./public/style/palette";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -25,7 +26,10 @@ sagaMiddleware.run(rootSaga);
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
