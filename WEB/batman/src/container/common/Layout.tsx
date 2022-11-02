@@ -15,6 +15,7 @@ import {
 import AppBar from "@mui/material/AppBar";
 import MenuIcon from "@mui/icons-material/Menu";
 import styled from "styled-components";
+import Nav from "../../component/nav";
 
 const mainListItems = (
   <>
@@ -38,59 +39,12 @@ const mainListItems = (
 );
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const theme = useTheme();
-
   return (
     <LayoutContainer>
-      <AppBar position="absolute" sx={{ bgcolor: theme.palette.grey[900] }}>
-        <Toolbar
-          sx={{
-            pr: "24px", // keep right padding when drawer closed
-          }}
-        >
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            sx={{ flexGrow: 1 }}
-          >
-            Batman
-          </Typography>
-          <IconButton color="inherit">
-            {/* <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge> */}
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      <Drawer variant="permanent">
-        <Toolbar
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-end",
-            px: [1],
-          }}
-        >
-          {/* <IconButton>
-              <ChevronLeftIcon />
-            </IconButton> */}
-        </Toolbar>
-        <Divider />
-        <List component="nav">
-          {mainListItems}
-          <Divider sx={{ my: 1 }} />
-          {/* {secondaryListItems} */}
-        </List>
-      </Drawer>
+      <Nav />
       <Box
         component="main"
         sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === "light"
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
           flexGrow: 1,
           height: "100vh",
           overflow: "auto",
@@ -103,8 +57,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 };
 
 const LayoutContainer = styled.div`
-  width: 100%;
-  height: 100%;
+  display: flex;
+  min-height: 100%;
+  overflow: hidden;
+  background-color: #eeeeee;
 `;
 
 export default Layout;
