@@ -1,6 +1,5 @@
 import { Grid } from "@mui/material";
-import React from "react";
-import StreamedianPlayer from "../../stream/StreamedianPlayer";
+import { SectorFrame, SectorFrameContainer } from "./styles";
 
 interface ISector {
   sector_id: number;
@@ -11,12 +10,19 @@ interface ISector {
 }
 
 const Sector = ({ sector }: { sector: ISector }) => {
+  const SCREEN_WIDTH = window.innerWidth;
+  const SECTOR_WIDTH = (SCREEN_WIDTH * 2 - 600) / 9;
+
   return (
     <Grid item xs={4}>
-      <StreamedianPlayer
-        id={sector.sector_name}
-        src="rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mp4"
-      />
+      <SectorFrameContainer>
+        <SectorFrame
+          ratio={SECTOR_WIDTH / 1280}
+          src="http://117.16.136.172:5000/video_feed"
+          frameBorder="0"
+          allowFullScreen
+        />
+      </SectorFrameContainer>
     </Grid>
   );
 };
