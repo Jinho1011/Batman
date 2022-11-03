@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { BsFullscreen, BsFullscreenExit } from "react-icons/bs";
 import { RiZzzFill } from "react-icons/ri";
+import StreamedianPlayer from "../../stream/StreamedianPlayer";
 
 const CamBlockWrapper = styled.div`
   position: relative;
@@ -30,7 +31,7 @@ const CamWrapper = styled.div`
   align-items: center;
 `;
 
-const CamDiv = styled.div`
+const CamDiv = styled.div<{ listSize: any }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -199,7 +200,7 @@ const CamBlock = ({
   runway,
   page,
   onPageClick,
-}) => {
+}: any) => {
   const { name, sectors } = runway;
   const { top, bottom } = sectors;
   const list = top.concat(bottom);
@@ -207,87 +208,96 @@ const CamBlock = ({
 
   const { isCamFull, idOfCam, onCamFullSize, onCamBackSize } = camSizeAttr;
 
-  if (isCamFull) {
-    return (
-      <CamBlockWrapper>
-        <MainBlock>
-          <CamWrapper>
-            {name === "활주로 선택" && (
-              <NotSelected>
-                {"활주로를 선택해주세요"}
-                <RiZzzFill />
-              </NotSelected>
-            )}
-            {list.map((l) => {
-              if (l._id === idOfCam) {
-                return (
-                  <CamDiv listSize={1} key={l._id}>
-                    {l.name}
-                    <CamSizeCtrl>
-                      <BsFullscreenExit onClick={() => onCamBackSize(l._id)} />
-                    </CamSizeCtrl>
-                  </CamDiv>
-                );
-              } else return null;
-            })}
-          </CamWrapper>
-          <CtrlBar>
-            <StyledSpan>
-              {name === "활주로 선택" ? "활주로를 선택하세요" : "CAM : " + name}
-            </StyledSpan>
-            <StyledBtn disabled>
-              <MdNavigateBefore />
-            </StyledBtn>
-            <StyledBtn disabled>
-              <MdNavigateNext />
-            </StyledBtn>
-            <SizeCtrl onClick={onClick}>
-              {isFull ? <BsFullscreenExit /> : <BsFullscreen />}
-            </SizeCtrl>
-          </CtrlBar>
-        </MainBlock>
-      </CamBlockWrapper>
-    );
-  } else
-    return (
-      <CamBlockWrapper>
-        <MainBlock>
-          <CamWrapper>
-            {name === "활주로 선택" && (
-              <NotSelected>
-                {"활주로를 선택해주세요"}
-                <RiZzzFill />
-              </NotSelected>
-            )}
-            {list.slice(page * 6, page * 6 + 6).map((l, idx) => (
-              <CamDiv listSize={list.length - page * 6} key={idx}>
-                {l.name}
-                <CamSizeCtrl>
-                  <BsFullscreen onClick={() => onCamFullSize(l._id)} />
-                </CamSizeCtrl>
-              </CamDiv>
-            ))}
-          </CamWrapper>
-          <CtrlBar>
-            <StyledSpan>
-              {name === "활주로 선택" ? "활주로를 선택하세요" : "CAM : " + name}
-            </StyledSpan>
-            <StyledBtn disabled={page === 0} onClick={() => onPageClick(-1)}>
-              <MdNavigateBefore />
-            </StyledBtn>
-            <StyledBtn
-              disabled={lastPage <= 0 || page === lastPage}
-              onClick={() => onPageClick(1)}
-            >
-              <MdNavigateNext />
-            </StyledBtn>
-            <SizeCtrl onClick={onClick}>
-              {isFull ? <BsFullscreenExit /> : <BsFullscreen />}
-            </SizeCtrl>
-          </CtrlBar>
-        </MainBlock>
-      </CamBlockWrapper>
-    );
+  return (
+    <StreamedianPlayer id={"test"}>
+      {
+        <source
+          src={
+            "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mp4"
+          }
+          type="application/x-rtsp"
+        />
+      }
+    </StreamedianPlayer>
+  );
+  //     <CamBlockWrapper>
+  //       <MainBlock>
+  //         <CamWrapper>
+  //           {name === "활주로 선택" && (
+  //             <NotSelected>
+  //               {"활주로를 선택해주세요"}
+  //               <RiZzzFill />
+  //             </NotSelected>
+  //           )}
+  //           {list.map((l) => {
+  //             if (l._id === idOfCam) {
+  //               return (
+  //                 <CamDiv listSize={1} key={l._id}>
+  //                   {l.name}
+  //                   <CamSizeCtrl>
+  //                     <BsFullscreenExit onClick={() => onCamBackSize(l._id)} />
+  //                   </CamSizeCtrl>
+  //                 </CamDiv>
+  //               );
+  //             } else return null;
+  //           })}
+  //         </CamWrapper>
+  //         <CtrlBar>
+  //           <StyledSpan>
+  //             {name === "활주로 선택" ? "활주로를 선택하세요" : "CAM : " + name}
+  //           </StyledSpan>
+  //           <StyledBtn disabled>
+  //             <MdNavigateBefore />
+  //           </StyledBtn>
+  //           <StyledBtn disabled>
+  //             <MdNavigateNext />
+  //           </StyledBtn>
+  //           <SizeCtrl onClick={onClick}>
+  //             {isFull ? <BsFullscreenExit /> : <BsFullscreen />}
+  //           </SizeCtrl>
+  //         </CtrlBar>
+  //       </MainBlock>
+  //     </CamBlockWrapper>
+  //   );
+  // } else
+  //   return (
+  //     <CamBlockWrapper>
+  //       <MainBlock>
+  //         <CamWrapper>
+  //           {name === "활주로 선택" && (
+  //             <NotSelected>
+  //               {"활주로를 선택해주세요"}
+  //               <RiZzzFill />
+  //             </NotSelected>
+  //           )}
+  //           {list.slice(page * 6, page * 6 + 6).map((l, idx) => (
+  //             <CamDiv listSize={list.length - page * 6} key={idx}>
+  //               {l.name}
+  //               <CamSizeCtrl>
+  //                 <BsFullscreen onClick={() => onCamFullSize(l._id)} />
+  //               </CamSizeCtrl>
+  //             </CamDiv>
+  //           ))}
+  //         </CamWrapper>
+  //         <CtrlBar>
+  //           <StyledSpan>
+  //             {name === "활주로 선택" ? "활주로를 선택하세요" : "CAM : " + name}
+  //           </StyledSpan>
+  //           <StyledBtn disabled={page === 0} onClick={() => onPageClick(-1)}>
+  //             <MdNavigateBefore />
+  //           </StyledBtn>
+  //           <StyledBtn
+  //             disabled={lastPage <= 0 || page === lastPage}
+  //             onClick={() => onPageClick(1)}
+  //           >
+  //             <MdNavigateNext />
+  //           </StyledBtn>
+  //           <SizeCtrl onClick={onClick}>
+  //             {isFull ? <BsFullscreenExit /> : <BsFullscreen />}
+  //           </SizeCtrl>
+  //         </CtrlBar>
+  //       </MainBlock>
+  //     </CamBlockWrapper>
 };
 
 export default CamBlock;
