@@ -39,7 +39,6 @@ const MoveableTarget = ({
       origin={true}
       padding={{ left: 0, top: 0, right: 0, bottom: 0 }}
       onDragOriginStart={(e) => {
-        console.log(e);
         e.dragStart && e.dragStart.set(frame.translate);
       }}
       onDragOrigin={(e) => {
