@@ -40,18 +40,34 @@ export interface ILogs {
   result: ILog[];
 }
 
-const useLogByStrip = (id: number, options: UseQueryOptions<ILogs>) => {
+const useLogByStrip = (
+  id: number,
+  page: number = 1,
+  size: number = 8,
+  options?: UseQueryOptions<ILogs>
+) => {
   return useQuery({
     queryKey: [path, id],
-    queryFn: () => api.get<ILogs>(`${path}/byStrip/${id}`),
+    queryFn: () =>
+      api.get<ILogs>(
+        `${path}/byStrip/${id}?page=${page}&size=${size}&sort=string`
+      ),
     ...options,
   });
 };
 
-const useLogBySector = (id: number, options: UseQueryOptions<ILogs>) => {
+const useLogBySector = (
+  id: number,
+  page: number = 1,
+  size: number = 10,
+  options: UseQueryOptions<ILogs>
+) => {
   return useQuery({
     queryKey: [path, id],
-    queryFn: () => api.get<ILogs>(`${path}/bySector/${id}`),
+    queryFn: () =>
+      api.get<ILogs>(
+        `${path}/bySector/${id}?page=${page}&size=${size}&sort=string`
+      ),
     ...options,
   });
 };

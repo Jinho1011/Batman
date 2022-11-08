@@ -1,14 +1,17 @@
 import { Grid } from "@mui/material";
 import Block from "../../container/common/Block";
 import Log from "../../container/home/Log";
-import { IAirstrip, useAirstrip } from "../../hooks/useAirstrip";
+import { useAirstrip } from "../../hooks/useAirstrip";
+import { useLogByStrip, useLogInWeek } from "../../hooks/useLog";
 import CCTV from "./CCTV";
-import GraphBlock from "./Graph/GraphBlock";
+import Statistics from "./Graph/Statistics";
 import Loading from "./Loading";
 import Runway from "./Runway";
 
 const Home = () => {
   const airstripQuery = useAirstrip(1);
+  const logInWeekQuery = useLogInWeek();
+  const logByAirstripQuery = useLogByStrip(1);
 
   return (
     <Grid
@@ -38,12 +41,20 @@ const Home = () => {
       </Grid>
       <Grid item xs={4}>
         <Block title="Statistics">
-          <GraphBlock />
+          {logInWeekQuery.data ? (
+            <Statistics data={logInWeekQuery.data} />
+          ) : (
+            <Loading />
+          )}
         </Block>
       </Grid>
       <Grid item xs={8}>
         <Block title="Recent Logs">
-          <Log />
+          {logByAirstripQuery.data ? (
+            <Log data={logByAirstripQuery.data} />
+          ) : (
+            <Loading />
+          )}
         </Block>
       </Grid>
     </Grid>
