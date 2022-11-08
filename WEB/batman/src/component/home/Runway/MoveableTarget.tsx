@@ -1,18 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Moveable from "react-moveable";
 import { ISector } from "..";
+import useDidMountEffect from "../../../hooks/useDidMountEffect";
 
 const MoveableTarget = ({
   target,
   sector,
+  containerSize,
 }: {
   target: any;
   sector: ISector;
+  containerSize: { width: number; height: number };
 }) => {
-  const [frame, setFrame] = useState({
-    translate: [0, 0],
-    // translate: [parseInt(sector.sector_x), parseInt(sector.sector_y)],
+  const [coord, setCoord] = useState({
+    x: Number(sector.x),
+    y: Number(sector.y),
   });
+  const frame = {
+    translate: [0, 0],
+  };
+
+  useDidMountEffect(() => {
+    // mutate airstrips
+    console.log(coord);
+  }, [coord]);
 
   return (
     <Moveable
@@ -25,6 +36,7 @@ const MoveableTarget = ({
       origin={true}
       padding={{ left: 0, top: 0, right: 0, bottom: 0 }}
       onDragOriginStart={(e) => {
+        console.log(e);
         e.dragStart && e.dragStart.set(frame.translate);
       }}
       onDragOrigin={(e) => {
@@ -36,6 +48,16 @@ const MoveableTarget = ({
       onRender={(e) => {
         const { translate } = frame;
         e.target.style.transform = `translate(${translate[0]}px, ${translate[1]}px)`;
+      }}
+      onDragEnd={(e) => {
+        const xDistance = e.lastEvent.beforeDist[0];
+        const yDistance = e.lastEvent.beforeDist[1];
+        const xRatio = xDistance / (containerSize.width - 30);
+        const yRatio = yDistance / (containerSize.height - 30);
+        setCoord((prev) => ({
+          x: Number(prev.x) + xRatio,
+          y: Number(prev.y) + yRatio,
+        }));
       }}
     />
   );

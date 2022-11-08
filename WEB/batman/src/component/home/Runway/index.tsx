@@ -49,6 +49,7 @@ const Runway = ({ airstrip }: { airstrip: IAirStrip }) => {
           <MoveableTarget
             target={target}
             sector={airstrip.sectorList[idx]}
+            containerSize={containerSize}
             key={idx}
           />
         ))}
