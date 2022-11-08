@@ -22,7 +22,7 @@ const Block = ({
   children,
   title,
 }: {
-  children: React.ReactNode;
+  children: JSX.Element;
   title: string;
 }) => {
   return (
