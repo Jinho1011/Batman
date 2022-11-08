@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import { ISector } from "..";
+import { ISector } from "../../../hooks/useAirstrip";
 import { SectorFrame, SectorFrameContainer } from "./styles";
 
 const Sector = ({ sector }: { sector: ISector }) => {
