@@ -3,11 +3,11 @@ import axios from "axios";
 export default class API {
   BASE_URL = "http://127.0.0.1:8081/";
 
-  get = async <T>(path: string): Promise<Awaited<T>> => {
+  get = async <T>(path: string): Promise<T> => {
     const res = await axios.get(this.BASE_URL + path);
-    const data = await (res.data as string);
+    const data = await (res.data as T);
 
-    return JSON.parse(data);
+    return data;
   };
 
   mutate = async (
@@ -15,6 +15,7 @@ export default class API {
     path: string,
     data: any
   ) => {
+    console.log(path, data);
     const res = await axios({ method, url: this.BASE_URL + path, data });
     return await res.data;
   };
