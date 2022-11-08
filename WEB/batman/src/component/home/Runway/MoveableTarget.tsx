@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Moveable from "react-moveable";
 import { ISector } from "../../../hooks/useAirstrip";
 import useDidMountEffect from "../../../hooks/useDidMountEffect";
+import { useSectorMutation } from "../../../hooks/useSector";
 
 const MoveableTarget = ({
   target,
@@ -16,12 +17,14 @@ const MoveableTarget = ({
     x: Number(sector.x),
     y: Number(sector.y),
   });
+  const sectorMutation = useSectorMutation("put");
   const frame = {
     translate: [0, 0],
   };
 
   useDidMountEffect(() => {
     // mutate airstrips
+    sectorMutation.mutate({ ...sector, x: coord.x, y: coord.y });
     console.log(coord);
   }, [coord]);
 
