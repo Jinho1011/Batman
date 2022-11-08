@@ -8,7 +8,7 @@ const BlockContainer = styled.div`
   background: #ffffff;
   border-radius: 6px;
   padding: 20px;
-  /* height: 400px; */
+  height: 100%;
 `;
 
 const BlockTitle = styled.span`

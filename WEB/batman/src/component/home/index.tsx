@@ -5,57 +5,85 @@ import CCTV from "./CCTV";
 import GraphBlock from "./Graph/GraphBlock";
 import Runway from "./Runway";
 
+export interface ISector {
+  id: number;
+  name: string;
+  camURL: string;
+  x: string;
+  y: string;
+  airStripId: number;
+}
+
+export interface IAirStrip {
+  id: number;
+  name: string;
+  startZone: string;
+  endZone: string;
+  sectorList: ISector[];
+}
+
 const Home = () => {
-  const sectors = [
-    {
-      sector_id: 1,
-      sector_name: "A",
-      sector_cam_url:
-        "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov",
-      sector_x: "0",
-      sector_y: "0",
-    },
-    {
-      sector_id: 2,
-      sector_name: "B",
-      sector_cam_url:
-        "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mp4",
-      sector_x: "1",
-      sector_y: "0",
-    },
-    {
-      sector_id: 3,
-      sector_name: "C",
-      sector_cam_url:
-        "rtsp://freja.hiof.no:1935/rtplive/definst/hessdalen02.stream",
-      sector_x: "0",
-      sector_y: "0.5",
-    },
-    {
-      sector_id: 4,
-      sector_name: "D",
-      sector_cam_url:
-        "http://archive.org/download/SampleMpeg4_201307/sample_mpeg4.mp4",
-      sector_x: "1",
-      sector_y: "0.5",
-    },
-    {
-      sector_id: 5,
-      sector_name: "E",
-      sector_cam_url:
-        "http://assets.appcelerator.com.s3.amazonaws.com/video/media.m4v",
-      sector_x: "0",
-      sector_y: "1",
-    },
-    {
-      sector_id: 6,
-      sector_name: "F",
-      sector_cam_url:
-        "rtsp://freja.hiof.no:1935/rtplive/_definst_/hessdalen03.stream",
-      sector_x: "1",
-      sector_y: "1",
-    },
-  ];
+  const airstrip: IAirStrip = {
+    id: 0,
+    name: "name",
+    startZone: "startZone",
+    endZone: "endZone",
+    sectorList: [
+      {
+        id: 1,
+        name: "A",
+        camURL:
+          "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov",
+        x: "0",
+        y: "0",
+        airStripId: 0,
+      },
+      {
+        id: 2,
+        name: "B",
+        camURL:
+          "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mp4",
+        x: "1",
+        y: "0",
+        airStripId: 0,
+      },
+      {
+        id: 3,
+        name: "C",
+        camURL: "rtsp://freja.hiof.no:1935/rtplive/definst/hessdalen02.stream",
+        x: "0",
+        y: "0.5",
+        airStripId: 0,
+      },
+      {
+        id: 4,
+        name: "D",
+        camURL:
+          "http://archive.org/download/SampleMpeg4_201307/sample_mpeg4.mp4",
+        x: "1",
+        y: "0.5",
+        airStripId: 0,
+      },
+      {
+        id: 5,
+        name: "E",
+        camURL:
+          "http://assets.appcelerator.com.s3.amazonaws.com/video/media.m4v",
+        x: "0",
+        y: "1",
+        airStripId: 0,
+      },
+      {
+        id: 6,
+        name: "F",
+        camURL:
+          "rtsp://freja.hiof.no:1935/rtplive/_definst_/hessdalen03.stream",
+        x: "1",
+        y: "1",
+        airStripId: 0,
+      },
+    ],
+  };
 
   return (
     <Grid
@@ -67,12 +95,12 @@ const Home = () => {
     >
       <Grid item xs={8}>
         <Block title="CCTV">
-          <CCTV sectors={sectors} />
+          <CCTV sectors={airstrip.sectorList} />
         </Block>
       </Grid>
       <Grid item xs={4}>
         <Block title="Runway">
-          <Runway />
+          <Runway airstrip={airstrip} />
         </Block>
       </Grid>
       <Grid item xs={4}>

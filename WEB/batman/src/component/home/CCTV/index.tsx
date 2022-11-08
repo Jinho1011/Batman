@@ -1,13 +1,6 @@
 import { Grid } from "@mui/material";
+import { ISector } from "..";
 import { SectorFrame, SectorFrameContainer } from "./styles";
-
-interface ISector {
-  sector_id: number;
-  sector_name: string;
-  sector_cam_url: string;
-  sector_x: string;
-  sector_y: string;
-}
 
 const Sector = ({ sector }: { sector: ISector }) => {
   const SCREEN_WIDTH = window.innerWidth;
@@ -31,7 +24,7 @@ const CCTV = ({ sectors }: { sectors: ISector[] }) => {
   return (
     <Grid container spacing={0}>
       {sectors.map((sector) => (
-        <Sector sector={sector} key={sector.sector_id} />
+        <Sector sector={sector} key={sector.id} />
       ))}
     </Grid>
   );
