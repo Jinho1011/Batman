@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Moveable from "react-moveable";
-import { ISector } from "..";
+import { ISector } from "../../../hooks/useAirstrip";
 import useDidMountEffect from "../../../hooks/useDidMountEffect";
 
 const MoveableTarget = ({

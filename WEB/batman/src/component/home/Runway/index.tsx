@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { IAirStrip } from "..";
+import { IAirstrip } from "../../../hooks/useAirstrip";
 import Airstrip from "./Airstrip";
 import MoveableTarget from "./MoveableTarget";
 import {
@@ -10,7 +10,7 @@ import {
 } from "./styles";
 import Target from "./Target";
 
-const Runway = ({ airstrip }: { airstrip: IAirStrip }) => {
+const Runway = ({ airstrip }: { airstrip: IAirstrip }) => {
   const [targetRefs, setTargetRefs] = useState<any[]>([]);
   const [containerSize, setContainerSize] = useState({
     width: 0,

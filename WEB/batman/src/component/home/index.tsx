@@ -1,29 +1,13 @@
 import { Grid } from "@mui/material";
 import Block from "../../container/common/Block";
 import Log from "../../container/home/Log";
+import { IAirstrip } from "../../hooks/useAirstrip";
 import CCTV from "./CCTV";
 import GraphBlock from "./Graph/GraphBlock";
 import Runway from "./Runway";
 
-export interface ISector {
-  id: number;
-  name: string;
-  camURL: string;
-  x: string;
-  y: string;
-  airStripId: number;
-}
-
-export interface IAirStrip {
-  id: number;
-  name: string;
-  startZone: string;
-  endZone: string;
-  sectorList: ISector[];
-}
-
 const Home = () => {
-  const airstrip: IAirStrip = {
+  const airstrip: IAirstrip = {
     id: 0,
     name: "name",
     startZone: "startZone",

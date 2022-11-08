@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { ISector } from "..";
+import { ISector } from "../../../hooks/useAirstrip";
 import { TargetContainer } from "./styles";
 
 const Target = ({
