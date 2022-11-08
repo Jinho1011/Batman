@@ -14,15 +14,22 @@ const LogoContainer = styled.div`
   height: auto;
 `;
 
-const MenuContainer = styled.div``;
+const MenuContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
 
 const MenuText = styled.span``;
 
 const MenuButton = styled.div<{ current: boolean }>`
-  background-color: ${(props) => (props.current ? "#000" : "#fff")};
+  padding: 8px 10px;
+  border-radius: 4px;
+  background-color: ${(props) => (props.current ? "#D9D9D9" : "none")};
+  cursor: pointer;
 
   ${MenuText} {
-    color: ${(props) => (props.current ? "#000" : "#fff")};
+    color: ${(props) => (props.current ? "#585858" : "#979797")};
   }
 `;
 
