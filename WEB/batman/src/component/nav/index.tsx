@@ -21,6 +21,10 @@ const Nav = () => {
       path: "/statistics",
       name: "Statistics",
     },
+    {
+      path: "/settings",
+      name: "Settings",
+    },
   ];
 
   return (

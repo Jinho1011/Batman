@@ -29,6 +29,7 @@ const MenuButton = styled.div<{ current: boolean }>`
   cursor: pointer;
 
   ${MenuText} {
+    font-weight: ${(props) => (props.current ? 600 : 400)};
     color: ${(props) => (props.current ? "#585858" : "#979797")};
   }
 `;

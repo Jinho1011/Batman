@@ -12,8 +12,6 @@ const AverageBySector = () => {
   const [currentSector, setCurrentSector] = useState(1);
   const logBySectorQuery = useLogBySector(currentSector, 0, 100);
 
-  console.log(logBySectorQuery.data);
-
   return (
     <AvgSectorContainer>
       {logBySectorQuery.data ? (

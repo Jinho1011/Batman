@@ -2,7 +2,7 @@ import { useMutation, useQuery, UseQueryOptions } from "@tanstack/react-query";
 import API from "../api";
 
 const api = new API();
-const path = "airstrips";
+const path = "airstrips/";
 
 export interface ISector {
   id: number;
@@ -24,7 +24,7 @@ export interface IAirstrip {
 const useAirstrip = (id: number, options?: UseQueryOptions<IAirstrip>) => {
   return useQuery({
     queryKey: [path, id],
-    queryFn: () => api.get<IAirstrip>(`${path}/${id}`),
+    queryFn: () => api.get<IAirstrip>(`${path}${id}`),
     ...options,
   });
 };
@@ -34,7 +34,8 @@ const useAirstripMutation = (
   id?: number
 ) => {
   return useMutation({
-    mutationFn: (body: object) => api.mutate(method, path + "/" + id, body),
+    mutationFn: (body: object) =>
+      api.mutate(method, id ? path + id : path, body),
   });
 };
 

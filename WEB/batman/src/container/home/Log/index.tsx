@@ -3,7 +3,6 @@ import { LogContainer } from "./styles";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 const Log = ({ data }: { data: ILogs }) => {
-  console.log(data.result);
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", flex: 1 },
     { field: "date", headerName: "Time", flex: 4 },

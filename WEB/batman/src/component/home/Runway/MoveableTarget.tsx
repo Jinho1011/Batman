@@ -23,9 +23,7 @@ const MoveableTarget = ({
   };
 
   useDidMountEffect(() => {
-    // mutate airstrips
     sectorMutation.mutate({ ...sector, x: coord.x, y: coord.y });
-    console.log(coord);
   }, [coord]);
 
   return (

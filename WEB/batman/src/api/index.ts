@@ -15,7 +15,6 @@ export default class API {
     path: string,
     data: any
   ) => {
-    console.log(path, data);
     const res = await axios({ method, url: this.BASE_URL + path, data });
     return await res.data;
   };
