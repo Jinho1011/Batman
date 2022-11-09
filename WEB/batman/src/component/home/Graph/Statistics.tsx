@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   font-weight: bolder;
 `;
 
-const Statistics = ({ data }: { data: ILogInWeek }) => {
+const WeekStatistic = ({ data }: { data: ILogInWeek }) => {
   return (
     <GraphBlockWrapper>
       <Wrapper>
@@ -56,4 +56,4 @@ const Statistics = ({ data }: { data: ILogInWeek }) => {
   );
 };
 
-export default Statistics;
+export default WeekStatistic;

@@ -4,7 +4,7 @@ import Log from "../../container/home/Log";
 import { useAirstrip } from "../../hooks/useAirstrip";
 import { useLogByStrip, useLogInWeek } from "../../hooks/useLog";
 import CCTV from "./CCTV";
-import Statistics from "./Graph/Statistics";
+import WeekStatistic from "./Graph/Statistics";
 import Loading from "./Loading";
 import Runway from "./Runway";
 
@@ -42,7 +42,7 @@ const Home = () => {
       <Grid item xs={4}>
         <Block title="Statistics">
           {logInWeekQuery.data ? (
-            <Statistics data={logInWeekQuery.data} />
+            <WeekStatistic data={logInWeekQuery.data} />
           ) : (
             <Loading />
           )}

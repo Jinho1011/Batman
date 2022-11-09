@@ -42,7 +42,7 @@ export interface ILogs {
 
 const useLogByStrip = (
   id: number,
-  page: number = 1,
+  page: number = 0,
   size: number = 8,
   options?: UseQueryOptions<ILogs>
 ) => {
@@ -58,16 +58,14 @@ const useLogByStrip = (
 
 const useLogBySector = (
   id: number,
-  page: number = 1,
-  size: number = 10,
-  options: UseQueryOptions<ILogs>
+  page: number = 0,
+  size: number = 1,
+  options?: UseQueryOptions<ILogs>
 ) => {
   return useQuery({
     queryKey: [path, id],
     queryFn: () =>
-      api.get<ILogs>(
-        `${path}/bySector/${id}?page=${page}&size=${size}&sort=string`
-      ),
+      api.get<ILogs>(`${path}/bySector/${id}?page=${page}&size=${size}`),
     ...options,
   });
 };
