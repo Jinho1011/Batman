@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import React from "react";
 import Block from "../../container/common/Block";
+import { useAirstrip } from "../../hooks/useAirstrip";
 import { useLogByStrip, useLogInWeek } from "../../hooks/useLog";
 import WeekStatistic from "../home/Graph/Statistics";
 import Loading from "../home/Loading";
@@ -9,11 +10,8 @@ import Statistic from "./Statistic";
 
 const Statistics = () => {
   const logInWeekQuery = useLogInWeek();
+  const airstripQuery = useAirstrip(1);
   const logByAirstripQuery = useLogByStrip(1);
-
-  // 1. 요일별 출현횟수 - Statistics
-  // 2. 한시간 별로 발생한 오늘 출현 횟수
-  // 3. 시간대별 평균 출현 횟수
 
   return (
     <Grid
@@ -53,7 +51,11 @@ const Statistics = () => {
       </Grid>
       <Grid item xs={12}>
         <Block title="시간대별 평균 출현 횟수">
-          <AverageBySector />
+          {airstripQuery.data ? (
+            <AverageBySector data={airstripQuery.data} />
+          ) : (
+            <Loading />
+          )}
         </Block>
       </Grid>
     </Grid>

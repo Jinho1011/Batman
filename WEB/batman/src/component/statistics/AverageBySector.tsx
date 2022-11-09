@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { IAirstrip } from "../../hooks/useAirstrip";
 import { useLogBySector } from "../../hooks/useLog";
 import Loading from "../home/Loading";
 import Statistic from "./Statistic";
@@ -8,15 +9,15 @@ import {
   AvgSectorButton,
 } from "./styles";
 
-const AverageBySector = () => {
-  const [currentSector, setCurrentSector] = useState(1);
+const AverageBySector = ({ data }: { data: IAirstrip }) => {
+  const [currentSector, setCurrentSector] = useState(data.sectorList[0].id);
   const logBySectorQuery = useLogBySector(currentSector, 0, 100);
 
   return (
     <AvgSectorContainer>
       {logBySectorQuery.data ? (
         <Statistic
-          label={`섹터 ${currentSector} 시간대별 평균 출현 횟수`}
+          label={`섹터 ${data.sectorList[currentSector].name} 시간대별 평균 출현 횟수`}
           labels={[...Array(24).keys()].map((i) => String(i + 1))}
           data={[...Array(24).keys()]
             .map((i) => String(i + 1))
@@ -30,10 +31,13 @@ const AverageBySector = () => {
         <Loading />
       )}
       <AvgSectorButtons>
-        {Array.from(Array(6).keys()).map((v) => {
+        {data.sectorList.map((sector) => {
           return (
-            <AvgSectorButton onClick={() => setCurrentSector(v + 1)} key={v}>
-              {v + 1}
+            <AvgSectorButton
+              onClick={() => setCurrentSector(sector.id)}
+              key={sector.id}
+            >
+              {sector.name}
             </AvgSectorButton>
           );
         })}
