@@ -1,7 +1,10 @@
 import axios from "axios";
 
 export default class API {
-  BASE_URL = "http://127.0.0.1:8081/";
+  BASE_URL =
+    !process.env.NODE_ENV || process.env.NODE_ENV === "development"
+      ? "http://127.0.0.1:8081/"
+      : "http://batman.api.default.svc.cluster.local:8080/";
 
   get = async <T>(path: string): Promise<T> => {
     const res = await axios.get(this.BASE_URL + path);
