@@ -11,7 +11,7 @@ const Sector = ({ sector }: { sector: ISector }) => {
       <SectorFrameContainer>
         <SectorFrame
           ratio={SECTOR_WIDTH / 1280}
-          src="http://117.16.136.172:5000/video_feed"
+          src={sector.camURL}
           frameBorder="0"
           allowFullScreen
         />
