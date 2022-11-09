@@ -7,6 +7,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={pages.home} />
         <Route exact path="/statistics" component={pages.statistics} />
+        <Route exact path="/catches" component={pages.catches} />
         <Route exact path="/settings" component={pages.settings} />
       </Switch>
     </BrowserRouter>

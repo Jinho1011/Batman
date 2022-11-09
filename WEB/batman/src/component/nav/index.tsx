@@ -22,6 +22,10 @@ const Nav = () => {
       name: "Statistics",
     },
     {
+      path: "/catches",
+      name: "Catches",
+    },
+    {
       path: "/settings",
       name: "Settings",
     },

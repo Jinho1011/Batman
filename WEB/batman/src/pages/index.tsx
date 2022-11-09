@@ -1,3 +1,4 @@
+import Catches from "../component/Catches";
 import Settings from "../component/settings";
 import Statistics from "../component/statistics";
 import Layout from "../container/common/Layout";
@@ -15,6 +16,13 @@ export const statistics = () => {
   return (
     <Layout>
       <Statistics />
+    </Layout>
+  );
+};
+export const catches = () => {
+  return (
+    <Layout>
+      <Catches />
     </Layout>
   );
 };

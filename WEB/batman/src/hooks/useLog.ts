@@ -49,9 +49,7 @@ const useLogByStrip = (
   return useQuery({
     queryKey: [path, id],
     queryFn: () =>
-      api.get<ILogs>(
-        `${path}/byStrip/${id}?page=${page}&size=${size}&sort=string`
-      ),
+      api.get<ILogs>(`${path}/byStrip/${id}?page=${page}&size=${size}`),
     ...options,
   });
 };
