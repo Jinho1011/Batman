@@ -7,6 +7,7 @@ import {
   UpdateButton,
   UpdateInputContainer,
   UpdateLabel,
+  UpdateInputs,
 } from "./styles";
 
 const UpdateAirstrip = ({ data }: { data: IAirstrip }) => {
@@ -28,30 +29,33 @@ const UpdateAirstrip = ({ data }: { data: IAirstrip }) => {
 
   return (
     <UpdateContainer>
-      <UpdateInputContainer>
-        <UpdateLabel>Name</UpdateLabel>
-        <UpdateInput
-          placeholder={data.name}
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </UpdateInputContainer>
-      <UpdateInputContainer>
-        <UpdateLabel>startZone</UpdateLabel>
-        <UpdateInput
-          placeholder={data.startZone}
-          value={startZone}
-          onChange={(e) => setStartZone(e.target.value)}
-        />
-      </UpdateInputContainer>
-      <UpdateInputContainer>
-        <UpdateLabel>endZone</UpdateLabel>
-        <UpdateInput
-          placeholder={data.endZone}
-          value={endZone}
-          onChange={(e) => setEndZone(e.target.value)}
-        />
-      </UpdateInputContainer>
+      <UpdateInputs>
+        <UpdateInputContainer>
+          <UpdateLabel>Name</UpdateLabel>
+          <UpdateInput
+            placeholder={data.name}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </UpdateInputContainer>
+        <UpdateInputContainer>
+          <UpdateLabel>startZone</UpdateLabel>
+          <UpdateInput
+            placeholder={data.startZone}
+            value={startZone}
+            onChange={(e) => setStartZone(e.target.value)}
+          />
+        </UpdateInputContainer>
+        <UpdateInputContainer>
+          <UpdateLabel>endZone</UpdateLabel>
+          <UpdateInput
+            placeholder={data.endZone}
+            value={endZone}
+            onChange={(e) => setEndZone(e.target.value)}
+          />
+        </UpdateInputContainer>
+      </UpdateInputs>
+
       <UpdateButtons>
         <UpdateButton onClick={updateAirstrip}>수정</UpdateButton>
         <UpdateButton onClick={() => deleteAirStripMutation.mutate({})}>
