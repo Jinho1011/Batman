@@ -13,6 +13,7 @@ const Home = () => {
   const logInWeekQuery = useLogInWeek();
   const logByAirstripQuery = useLogByStrip({
     id: 1,
+    size: 1000,
     options: {
       refetchInterval: 1000,
     },

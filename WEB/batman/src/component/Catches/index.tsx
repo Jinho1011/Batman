@@ -11,6 +11,7 @@ import Loading from "../home/Loading";
 const Catches = () => {
   const logByAirstripQuery = useLogByStrip({
     id: 1,
+    size: 1000,
     options: {
       refetchInterval: 1000,
     },

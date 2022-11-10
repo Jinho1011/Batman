@@ -5,38 +5,37 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 const Log = ({ data }: { data: ILogs }) => {
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", flex: 1 },
+    { field: "objectName", headerName: "Object", flex: 2 },
     { field: "date", headerName: "Time", flex: 4 },
-    { field: "result", headerName: "Result", flex: 2 },
     {
       field: "sectorId",
       headerName: "Sector ID",
-      flex: 1,
+      flex: 2,
     },
     {
-      field: "resultURL",
-      headerName: "Result URL",
+      field: "captureURL",
+      headerName: "Capture URL",
       flex: 4,
+      renderCell: (params) => {
+        console.log(params);
+        return <a href={params.row.captureURL}>{params.row.captureURL}</a>;
+      },
     },
   ];
 
   const rows = data.result.map((log) => {
     return {
       id: log.id,
+      objectName: log.objectName,
       date: log.logDate,
-      result: log.result,
       sectorId: log.sectorId,
-      resultURL: log.resultURL,
+      captureURL: log.captureURL,
     };
   });
 
   return (
     <LogContainer>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={10}
-        // rowsPerPageOptions={[10]}
-      />
+      <DataGrid rows={rows} columns={columns} pageSize={10} />
     </LogContainer>
   );
 };

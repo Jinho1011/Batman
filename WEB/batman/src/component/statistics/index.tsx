@@ -9,10 +9,11 @@ import AverageBySector from "./AverageBySector";
 import Statistic from "./Statistic";
 
 const Statistics = () => {
-  const logInWeekQuery = useLogInWeek();
   const airstripQuery = useAirstrip(1);
+  const logInWeekQuery = useLogInWeek();
   const logByAirstripQuery = useLogByStrip({
     id: 1,
+    size: 1000,
     options: {
       refetchInterval: 1000,
     },

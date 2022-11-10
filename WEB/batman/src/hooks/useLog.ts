@@ -7,6 +7,7 @@ const path = "logs";
 export interface ILog {
   id: number;
   logDate: string;
+  objectName: string;
   captureURL: string;
   result: string;
   resultURL: string;
