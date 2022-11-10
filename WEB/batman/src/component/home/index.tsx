@@ -11,7 +11,12 @@ import Runway from "./Runway";
 const Home = () => {
   const airstripQuery = useAirstrip(1);
   const logInWeekQuery = useLogInWeek();
-  const logByAirstripQuery = useLogByStrip(1);
+  const logByAirstripQuery = useLogByStrip({
+    id: 1,
+    options: {
+      refetchInterval: 1000,
+    },
+  });
 
   return (
     <Grid

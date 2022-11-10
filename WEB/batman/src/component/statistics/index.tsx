@@ -11,7 +11,12 @@ import Statistic from "./Statistic";
 const Statistics = () => {
   const logInWeekQuery = useLogInWeek();
   const airstripQuery = useAirstrip(1);
-  const logByAirstripQuery = useLogByStrip(1);
+  const logByAirstripQuery = useLogByStrip({
+    id: 1,
+    options: {
+      refetchInterval: 1000,
+    },
+  });
 
   return (
     <Grid

@@ -11,7 +11,12 @@ import { useLogByStrip } from "../../hooks/useLog";
 import Loading from "../home/Loading";
 
 const Catches = () => {
-  const logByAirstripQuery = useLogByStrip(1, 0, 8);
+  const logByAirstripQuery = useLogByStrip({
+    id: 1,
+    options: {
+      refetchInterval: 1000,
+    },
+  });
 
   return (
     <Grid

@@ -40,12 +40,17 @@ export interface ILogs {
   result: ILog[];
 }
 
-const useLogByStrip = (
-  id: number,
-  page: number = 0,
-  size: number = 8,
-  options?: UseQueryOptions<ILogs>
-) => {
+const useLogByStrip = ({
+  id,
+  page,
+  size,
+  options,
+}: {
+  id: number;
+  page?: number;
+  size?: number;
+  options?: UseQueryOptions<ILogs>;
+}) => {
   return useQuery({
     queryKey: [path, id],
     queryFn: () =>
