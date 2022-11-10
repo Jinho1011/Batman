@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Line } from "react-chartjs-2";
 
 const GraphBlockWrapper = styled.div`
-  height: 40vh;
+  height: 30vh;
   width: 100%;
   display: flex;
   justify-content: center;

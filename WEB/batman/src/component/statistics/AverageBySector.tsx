@@ -10,14 +10,14 @@ import {
 } from "./styles";
 
 const AverageBySector = ({ data }: { data: IAirstrip }) => {
-  const [currentSector, setCurrentSector] = useState(data.sectorList[0].id);
-  const logBySectorQuery = useLogBySector(currentSector, 0, 100);
+  const [currentSector, setCurrentSector] = useState(data.sectorList[0]);
+  const logBySectorQuery = useLogBySector(currentSector.id, 0, 100);
 
   return (
     <AvgSectorContainer>
       {logBySectorQuery.data ? (
         <Statistic
-          label={`섹터 ${data.sectorList[currentSector].name} 시간대별 평균 출현 횟수`}
+          label={`섹터 ${currentSector.name} 시간대별 평균 출현 횟수`}
           labels={[...Array(24).keys()].map((i) => String(i + 1))}
           data={[...Array(24).keys()]
             .map((i) => String(i + 1))
@@ -34,7 +34,7 @@ const AverageBySector = ({ data }: { data: IAirstrip }) => {
         {data.sectorList.map((sector) => {
           return (
             <AvgSectorButton
-              onClick={() => setCurrentSector(sector.id)}
+              onClick={() => setCurrentSector(sector)}
               key={sector.id}
             >
               {sector.name}
