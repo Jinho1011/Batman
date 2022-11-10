@@ -4,9 +4,7 @@ import {
   ImageListItem,
   ImageListItemBar,
 } from "@mui/material";
-import React from "react";
 import Block from "../../container/common/Block";
-import Log from "../../container/home/Log";
 import { useLogByStrip } from "../../hooks/useLog";
 import Loading from "../home/Loading";
 
