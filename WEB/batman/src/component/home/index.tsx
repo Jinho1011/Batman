@@ -1,4 +1,5 @@
 import { Grid } from "@mui/material";
+import { useState } from "react";
 import Block from "../../container/common/Block";
 import Log from "../../container/home/Log";
 import { useAirstrip } from "../../hooks/useAirstrip";
@@ -9,13 +10,14 @@ import Loading from "./Loading";
 import Runway from "./Runway";
 
 const Home = () => {
+  const [refetch, setRefetch] = useState(true);
   const airstripQuery = useAirstrip(1);
   const logInWeekQuery = useLogInWeek();
   const logByAirstripQuery = useLogByStrip({
     id: 1,
     size: 1000,
     options: {
-      refetchInterval: 1000,
+      refetchInterval: refetch ? 1000 : false,
     },
   });
 
@@ -39,7 +41,7 @@ const Home = () => {
       <Grid item xs={4}>
         <Block title="Runway">
           {airstripQuery.data ? (
-            <Runway airstrip={airstripQuery.data} />
+            <Runway airstrip={airstripQuery.data} setRefetch={setRefetch} />
           ) : (
             <Loading />
           )}

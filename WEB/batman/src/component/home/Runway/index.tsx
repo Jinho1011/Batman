@@ -10,7 +10,13 @@ import {
 } from "./styles";
 import Target from "./Target";
 
-const Runway = ({ airstrip }: { airstrip: IAirstrip }) => {
+const Runway = ({
+  airstrip,
+  setRefetch,
+}: {
+  airstrip: IAirstrip;
+  setRefetch: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [targetRefs, setTargetRefs] = useState<any[]>([]);
   const [containerSize, setContainerSize] = useState({
     width: 0,
@@ -55,11 +61,15 @@ const Runway = ({ airstrip }: { airstrip: IAirstrip }) => {
         ))}
       </MoveableContainer>
       <ButtonsContainer>
-        <Button color="#2499EF">Start</Button>
+        <Button color="#2499EF" onClick={() => setRefetch(true)}>
+          Start
+        </Button>
         <Button color="#293046" onClick={() => setFlipped(!flipped)}>
           Flip
         </Button>
-        <Button color="#FF9777">Pause</Button>
+        <Button color="#FF9777" onClick={() => setRefetch(false)}>
+          Pause
+        </Button>
       </ButtonsContainer>
     </RunwayContainer>
   );
