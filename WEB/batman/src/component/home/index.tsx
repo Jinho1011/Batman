@@ -1,9 +1,10 @@
 import { Grid } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Block from "../../container/common/Block";
 import Log from "../../container/home/Log";
 import { useAirstrip } from "../../hooks/useAirstrip";
-import { useLogByStrip, useLogInWeek } from "../../hooks/useLog";
+import { ILog, useLogByStrip, useLogInWeek } from "../../hooks/useLog";
+import toast, { Toaster } from "react-hot-toast";
 import CCTV from "./CCTV";
 import WeekStatistic from "./Graph/Statistics";
 import Loading from "./Loading";
@@ -13,6 +14,7 @@ const Home = () => {
   const [refetch, setRefetch] = useState(true);
   const airstripQuery = useAirstrip(1);
   const logInWeekQuery = useLogInWeek();
+  const [lastCriticalLog, setLastCriticalLog] = useState<ILog | null>(null);
   const logByAirstripQuery = useLogByStrip({
     id: 1,
     size: 1000,
@@ -20,6 +22,18 @@ const Home = () => {
       refetchInterval: refetch ? 1000 : false,
     },
   });
+
+  useEffect(() => {
+    if (
+      logByAirstripQuery.data &&
+      logByAirstripQuery.data.result[0].isCritical &&
+      (!lastCriticalLog ||
+        lastCriticalLog.id !== logByAirstripQuery.data.result[0].id)
+    ) {
+      toast.error("Bird Alert");
+      setLastCriticalLog(logByAirstripQuery.data.result[0]);
+    }
+  }, [logByAirstripQuery]);
 
   return (
     <Grid
@@ -65,6 +79,7 @@ const Home = () => {
           )}
         </Block>
       </Grid>
+      <Toaster />
     </Grid>
   );
 };

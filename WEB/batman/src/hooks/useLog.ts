@@ -11,6 +11,7 @@ export interface ILog {
   captureURL: string;
   result: string;
   resultURL: string;
+  isCritical: boolean;
   sectorId: number;
 }
 
